@@ -3,10 +3,12 @@ const express = require("express"),
   app = express().use(body_parser.json()); // creates express http server
 
 
-app.listen(process.env.PORT || 1337, () => console.log("webhook is listening"));
+app.listen(process.env.PORT || 80, () => console.log("webhook is listening"));
 app.post("/webhook", (req, res) => {
   // Parse the request body from the POST
   let body = req.body;
+  console.log(body);
+
   // Check the webhook event is from a Page subscription
   if (body) {
     console.log(body);
@@ -20,6 +22,8 @@ app.post("/webhook", (req, res) => {
 // Accepts GET requests at the /webhook endpoint
 app.get("/webhook", (req, res) => {
   /** UPDATE YOUR VERIFY TOKEN **/
+  let body = req.body;
+  console.log(body);
   const VERIFY_TOKEN = "secretsecretsecret";
 
   // Parse params from the webhook verification request
